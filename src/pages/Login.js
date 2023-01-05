@@ -3,10 +3,12 @@ import React from "react";
 import { useState, useRef } from "react";
 import { Container, Button, Form, Row, Col, Card } from "react-bootstrap";
 import { useDispatch } from "react-redux/es/exports";
+import { useHistory } from "react-router-dom";
 import { authActions } from "../store/authReducer";
 
 const Login = () => {
   const [isLogin, setIsLogin] = useState(false);
+  const history  = useHistory();
   const dispatch = useDispatch();
   const emailref = useRef();
   const pswdref = useRef();
@@ -42,6 +44,7 @@ const Login = () => {
        localStorage.setItem('email',newmail);
        dispatch(authActions.login({token:token,email:newmail}));
        console.log("User has successfully signed up");
+       history.replace('/welcome')
     }
  }).catch((err) =>{
     alert(err.response.data.error.message);
