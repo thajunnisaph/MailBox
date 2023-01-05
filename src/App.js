@@ -1,8 +1,18 @@
+import { Switch,Route } from "react-router-dom";
+import { Fragment } from "react";
+import Header from "./components/Header";
+import Login from "./pages/Login";
 function App() {
   return (
-    <div>
-      <h2>Let's get started!</h2>
-    </div>
+    <Fragment>
+      <Header />
+      <Switch>
+      <Route path = '/' exact>
+      <Login />
+      </Route>
+     
+      </Switch>
+    </Fragment>
   );
 }
 
