@@ -39,10 +39,9 @@ const Login = () => {
     if(res.status ===200){
        const token =  res.data.idToken;
        const email = res.data.email;
-       const newmail =email.replace(/\.|@/g, '');
        localStorage.setItem('token',token);
-       localStorage.setItem('email',newmail);
-       dispatch(authActions.login({token:token,email:newmail}));
+       localStorage.setItem('email',email);
+       dispatch(authActions.login({token,email}));
        console.log("User has successfully signed up");
        history.replace('/welcome')
     }
@@ -99,7 +98,7 @@ const Login = () => {
                     </div>
                     <div className="d-grid gap-1 p-3">
                       {isLogin && (
-                        <Button variant="outline-primary">
+                        <Button variant="link">
                           Forgot Password?
                         </Button>
                       )}

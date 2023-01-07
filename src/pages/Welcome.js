@@ -1,10 +1,17 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 
 const Welcome = () => {
+  const history = useHistory();
+  const mailboxHandler = () =>{
+    history.push('/mailbox');
+  }
+
   return (
     <div className='mt-3'>
-        <h3 className='p-3'>Welcome to your mailbox!!!</h3>
-        
+        <h2 className='p-3'>Welcome to your mailbox!!!</h2>
+        <Button  variant='success' onClick = {mailboxHandler}>Go to Mailbox</Button>
         <hr />
     </div>
   )
