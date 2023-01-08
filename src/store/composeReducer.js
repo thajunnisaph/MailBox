@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-const composeinitialstate = {send:{},}
+const composeinitialstate = {send:{},sentData:[],receivedData:[]}
 const composeSlice =  createSlice({
     name:'compose',
     initialState:composeinitialstate,
@@ -10,6 +10,14 @@ const composeSlice =  createSlice({
         subject:action.payload.subject,
         body:action.payload.body
        }
+        },
+        fetchSentdata(state,action){
+            state.sentData = action.payload;
+            console.log(state.sentData);
+        },
+        fetchReceivedData(state,action){
+            state.receivedData = action.payload;
+            console.log(state.receivedData);
         }
     }
 })

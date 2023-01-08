@@ -1,6 +1,6 @@
 .list {
-    display: flex;
-    justify-content: space-around;
+    display:inline-flex;
+    
     margin-left: 200px;
   }
   
@@ -8,5 +8,6 @@
     text-decoration: none;
     color: black;
     font-size: 1.5rem;
+    padding-left: 30px;;
   }
   

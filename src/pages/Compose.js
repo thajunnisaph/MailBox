@@ -26,7 +26,7 @@ setEditorState(editorState);
     }
   return (
     <div>
-      <Container className="mt-3 mb-3 " style={{marginLeft:'100px'}}>
+      <Container className="my-3 mx-8">
         <Row >
           <Col >
             <Card style={{ width: "50rem" }}>

@@ -3,6 +3,7 @@ import './Mailbox.css';
 import { Fragment } from 'react';
 import {Col,Navbar,NavItem} from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
+
 const Mailbox = () => {
   return (
     <Fragment>
@@ -11,6 +12,16 @@ const Mailbox = () => {
           <NavItem>
             <NavLink className="menu" to="/compose">
               Compose
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink className="menu" to="/mailbox">
+              Inbox
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink className="menu" to="/sent">
+             Sent
             </NavLink>
           </NavItem>
           </Navbar>
