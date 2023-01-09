@@ -23,7 +23,7 @@ const Mailbox = () => {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink className="menu" to="/sent">
+            <NavLink className="menu" to="/send">
              Sent
             </NavLink>
           </NavItem>

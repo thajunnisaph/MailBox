@@ -9,6 +9,7 @@ import Compose from "./pages/Compose";
 
 import Sent from "./pages/Sent";
 import InboxView from "./pages/InboxView";
+import SentView from "./pages/SentView";
 function App() {
   
   return (
@@ -33,10 +34,14 @@ function App() {
         <Mailbox />
         <Compose />
       </Route>
-      <Route path = '/sent' exact>
+      <Route path = '/send' exact>
         <Mailbox />
         <Sent />
       </Route> 
+      <Route path = '/send/:email' >
+        <Mailbox/>
+        <SentView/>
+      </Route>
      
       </Switch>
     </Fragment>
