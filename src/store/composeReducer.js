@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-const composeinitialstate = {send:{},sentData:[],receivedData:[],read:false}
+const composeinitialstate = {send:{},sentData:[],receivedData:[]}
 const composeSlice =  createSlice({
     name:'compose',
     initialState:composeinitialstate,
@@ -20,7 +20,23 @@ const composeSlice =  createSlice({
             console.log(state.receivedData);
         },
         readMessage(state,action){
-            state.read = true;
+         const id = action.payload;
+         const existing = [...state.receivedData];
+         existing.forEach((ele,ind) =>{
+         if(ele.id ===id) {
+            existing[ind].read =true;
+         } });
+         state.receivedData = existing;  
+        },
+        deleteFromInbox(state,action){
+            const id = action.payload;
+            const currentInbox = [...state.receivedData];
+            state.receivedData = currentInbox.filter((item) => item.id !== id);
+        },
+        deleteFromSent(state,action){
+            const id = action.payload;
+            const currentsent = [...state.sentData];
+            state.sentData = currentsent.filter((item) => item.id !==id);
         }
     }
 })

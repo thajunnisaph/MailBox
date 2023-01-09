@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect } from 'react';
 import {Container,Row,Col,Button} from 'react-bootstrap';
 import {useSelector,useDispatch} from 'react-redux';
-import { fetchSentMail } from '../store/composeActions';
+import { deleteMailFromSent, fetchSentMail } from '../store/composeActions';
 
 const Sent = () => {
   const dispatch = useDispatch();
@@ -13,6 +13,9 @@ const Sent = () => {
     console.log(sentmail);
     if(sentmail.length===0){
       return <p className='text-center fw-bold '> No mail Found</p>
+    }
+    const deleteHandler = (id) =>{
+    dispatch(deleteMailFromSent(id));
     }
   return (
     <div>
@@ -30,7 +33,7 @@ const Sent = () => {
             </Col>
             <Col>
             <div className='btn float-right'>
-            <Button variant="danger"  size='sm'>Delete</Button>
+            <Button variant="danger"  size='sm' onClick = {() => deleteHandler(mail.id)} >Delete</Button>
             </div>
            
             </Col>

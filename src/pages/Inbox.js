@@ -3,7 +3,8 @@ import {Link} from 'react-router-dom';
 import './inbox.css';
 import {Container,Row,Col,Button} from 'react-bootstrap';
 import {useSelector,useDispatch} from 'react-redux';
-import { fetchReceivedMail } from '../store/composeActions';
+import { deleteMail,fetchReceivedMail } from '../store/composeActions';
+
 const Inbox = () => {
     const inboxdata = useSelector((state) => state.compose.receivedData);
     const dispatch = useDispatch();
@@ -13,6 +14,9 @@ const Inbox = () => {
     },[dispatch]);
     if(inboxdata.length===0){
       return <p className='text-center fw-bold'> No mail Found</p>
+    }
+    const deletemailHandler = (id) =>{
+      dispatch(deleteMail(id));
     }
   return (
     <div >
@@ -37,7 +41,7 @@ const Inbox = () => {
      </Col>
      <Col>
      <div className='btn float-right'>
-     <Button variant="danger" size='sm'>Delete</Button>
+     <Button variant="danger" size='sm' onClick= {() => deletemailHandler(data.id)}>Delete</Button>
      </div></Col>
      
  </Row>

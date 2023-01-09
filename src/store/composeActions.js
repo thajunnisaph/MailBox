@@ -94,3 +94,27 @@ export const readMessage = (data) =>{
         readData();
     }
 }
+export const deleteMail = (id) =>{
+    return async(dispatch) =>{
+        const mail =localStorage.getItem('email');
+        const logmail = mail.replace(/\.|@/g, '');
+        const resp = await axios.delete(`https://mailbox-5d189-default-rtdb.firebaseio.com/${logmail}/${id}.json`);
+        if(resp.status === 200){
+            console.log(resp);
+            dispatch(composeActions.deleteFromInbox(id));
+        }
+        
+    }
+}
+export const deleteMailFromSent = (id) =>{
+    return async(dispatch) =>{
+        const mail =localStorage.getItem('email');
+        const logmail = mail.replace(/\.|@/g, '');
+        const resp = await axios.delete(`https://mailbox-5d189-default-rtdb.firebaseio.com/${logmail}/${id}.json`);
+        if(resp.status === 200){
+            console.log(resp);
+            dispatch(composeActions.deleteFromSent(id));
+        }
+        
+    }
+}
