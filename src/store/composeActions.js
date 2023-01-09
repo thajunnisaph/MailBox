@@ -6,7 +6,7 @@ export const composeMail = (tomail,subject,body) =>{
         const email = localStorage.getItem('email');
         const sendemail = email.replace(/\.|@/g, '');
         const send = await axios.post(`https://mailbox-5d189-default-rtdb.firebaseio.com/${sendemail}.json`,{
-            send:{To:tomail,subject:subject,body:body}
+            send:{To:tomail,subject:subject,body:body,read:false}
         });
         if(send.status === 200){
             console.log(send);
@@ -15,7 +15,7 @@ export const composeMail = (tomail,subject,body) =>{
 
         const Tomail = tomail.replace(/\.|@/g, '');
         await axios.post(`https://mailbox-5d189-default-rtdb.firebaseio.com/${Tomail}.json`,{
-            inbox:{From:email,subject:subject,body:body}
+            inbox:{From:email,subject:subject,body:body,read:false}
         });
 
     }
@@ -35,7 +35,8 @@ export const fetchSentMail = () =>{
                 id:Key,
                 To:response.data[Key].send.To,
                 subject:response.data[Key].send.subject,
-                body:response.data[Key].send.body
+                body:response.data[Key].send.body,
+                read:response.data[Key].send.read
             })
         }
     }
@@ -61,7 +62,8 @@ export const fetchReceivedMail = () =>{
                         id:Key,
                         From:response.data[Key].inbox.From,
                         subject:response.data[Key].inbox.subject,
-                        body:response.data[Key].inbox.body
+                        body:response.data[Key].inbox.body,
+                        read:response.data[Key].inbox.read
                     })
                 }
             }
@@ -71,5 +73,24 @@ export const fetchReceivedMail = () =>{
         const data = await receive();
         dispatch(composeActions.fetchReceivedData(data));
         
+    }
+}
+export const readMessage = (data) =>{
+    return async(dispatch) =>{
+        const readData = async() =>{
+            const mail = localStorage.getItem('email');
+            const logmail = mail.replace(/\.|@/g, '');
+           const resp =  axios.put(`https://mailbox-5d189-default-rtdb.firebaseio.com/${logmail}/${data.id}/inbox.json`,{
+           From:data.From,
+           body:data.body,
+           subject:data.subject,
+           read:true,
+           });
+           if(resp.status ===200){
+            console.log(resp.data);
+            dispatch(composeActions.readMessage(data.id));
+           }
+        }
+        readData();
     }
 }

@@ -21,8 +21,10 @@ setEditorState(editorState);
         const subject = subref.current.value;
         const body = editorState.getCurrentContent().getPlainText();
         dispatch(composeMail(tomail,subject,body));
+       
         e.target.reset();
         setEditorState('');
+       
     }
   return (
     <div>

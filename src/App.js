@@ -8,6 +8,7 @@ import Inbox from "./pages/Inbox";
 import Compose from "./pages/Compose";
 
 import Sent from "./pages/Sent";
+import InboxView from "./pages/InboxView";
 function App() {
   
   return (
@@ -20,9 +21,13 @@ function App() {
       <Route path = '/welcome' exact>
         <Welcome />
       </Route>
-      <Route path = '/mailbox' exact>
+      <Route path = '/inbox' exact>
         <Mailbox />
         <Inbox />
+      </Route>
+      <Route path='/inbox/:email'>
+        <Mailbox/>
+        <InboxView />
       </Route>
        <Route path = '/compose' exact>
         <Mailbox />

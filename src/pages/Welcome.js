@@ -5,7 +5,7 @@ import { Button } from 'react-bootstrap';
 const Welcome = () => {
   const history = useHistory();
   const mailboxHandler = () =>{
-    history.push('/mailbox');
+    history.push('/inbox');
   }
 
   return (

@@ -11,6 +11,9 @@ const Sent = () => {
     dispatch(fetchSentMail())
     },[dispatch]);
     console.log(sentmail);
+    if(sentmail.length===0){
+      return <p className='text-center fw-bold '> No mail Found</p>
+    }
   return (
     <div>
      {sentmail.map((mail) =>
