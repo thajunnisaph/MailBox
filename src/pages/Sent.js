@@ -1,17 +1,17 @@
 import React from 'react'
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './inbox.css';
 import {Container,Row,Col,Button} from 'react-bootstrap';
 import {useSelector,useDispatch} from 'react-redux';
-import { deleteMailFromSent, fetchSentMail } from '../store/composeActions';
+import { deleteMailFromSent} from '../store/composeActions';
 
 const Sent = () => {
   const dispatch = useDispatch();
     const sentmail = useSelector((state) => state.compose.sentData);
-    useEffect(() =>{
-    dispatch(fetchSentMail())
-    },[dispatch]);
+    // useEffect(() =>{
+    // dispatch(fetchSentMail())s
+    // },[dispatch]);
     console.log(sentmail);
     if(sentmail.length===0){
       return <p className='text-center fw-bold '> No mail Found</p>
@@ -23,7 +23,7 @@ const Sent = () => {
     <div>
      {sentmail.map((mail) =>{
      const url = `/send/${mail.subject}`;
-     return (<Container className='mt-3' key={mail.id}>
+     return (<Container className='my-3' key={mail.id}>
         <Row xs={5} className='bg-light border p-3'>
         <Link to={{pathname:url, state:mail}} className='link'>
             <Col className='float' >

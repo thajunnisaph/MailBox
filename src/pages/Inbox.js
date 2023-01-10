@@ -1,19 +1,19 @@
-import React,{useEffect} from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
 import './inbox.css';
 import {Container,Row,Col,Button} from 'react-bootstrap';
 import {useSelector,useDispatch} from 'react-redux';
-import { deleteMail,fetchReceivedMail } from '../store/composeActions';
+import { deleteMail} from '../store/composeActions';
 
 const Inbox = () => {
     const inboxdata = useSelector((state) => state.compose.receivedData);
     const dispatch = useDispatch();
-    useEffect(() =>{
-    dispatch(fetchReceivedMail());
+    // useEffect(() =>{
+    // dispatch(fetchReceivedMail());
     
-    },[dispatch]);
+    // },[dispatch]);
     if(inboxdata.length===0){
-      return <p className='text-center fw-bold'> No mail Found</p>
+      return <p className='text-center fw-bold p-7'> No mail Found</p>
     }
     const deletemailHandler = (id) =>{
       dispatch(deleteMail(id));

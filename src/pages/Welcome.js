@@ -11,7 +11,7 @@ const Welcome = () => {
   return (
     <div className='mt-3'>
         <h2 className='p-3'>Welcome to your mailbox!!!</h2>
-        <Button  variant='success' onClick = {mailboxHandler}>Go to Mailbox</Button>
+        <Button  className='mx-3' variant='success' onClick = {mailboxHandler}>Go to Mailbox</Button>
         <hr />
     </div>
   )
