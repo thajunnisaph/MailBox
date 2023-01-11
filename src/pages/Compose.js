@@ -3,6 +3,7 @@ import {useDispatch} from 'react-redux';
 import { useState,useRef} from "react";
 import { Button,Container,Row,Col,Card,Form,FloatingLabel } from "react-bootstrap";
 import { Editor } from "react-draft-wysiwyg";
+import { EditorState,convertToRaw } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { composeMail } from "../store/composeActions";
 
@@ -10,7 +11,7 @@ const Compose = () => {
     const emailref = useRef();
     const dispatch = useDispatch();
     const subref = useRef();
-    const [editorState,setEditorState] = useState('');
+    const [editorState,setEditorState] = useState(() => EditorState.createEmpty());
     const editorChangeHanler = (editorState) =>{
 setEditorState(editorState);
     }
@@ -19,7 +20,7 @@ setEditorState(editorState);
         console.log('hello')
         const tomail = emailref.current.value;
         const subject = subref.current.value;
-        const body = editorState.getCurrentContent().getPlainText();
+        const body =convertToRaw(editorState.getCurrentContent()).blocks[0].text;
         dispatch(composeMail(tomail,subject,body));
        
         e.target.reset();
