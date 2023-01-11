@@ -31,7 +31,7 @@ export const fetchSentMail = () =>{
     let data = [];
     for(const Key in response.data){
         if(response.data[Key].send){
-            data.push({
+            data.unshift({
                 id:Key,
                 To:response.data[Key].send.To,
                 subject:response.data[Key].send.subject,
@@ -58,7 +58,7 @@ export const fetchReceivedMail = () =>{
             let data = [];
             for(const Key in response.data){
                 if(response.data[Key].inbox){
-                    data.push({
+                    data.unshift({
                         id:Key,
                         From:response.data[Key].inbox.From,
                         subject:response.data[Key].inbox.subject,
